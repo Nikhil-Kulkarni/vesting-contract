@@ -53,18 +53,16 @@ contract Vesting is Initializable {
         require(account.amountLeft > 0, "no vesting tokens");
         require(account.initialLockedAmount > 0, "no tokens deposited for vesting");
 
-        uint256 amount = vestedAmount(account);
-        account.amountLeft -= amount;
+        uint256 totalVestedAmount = vestedAmount(account);
+        uint256 alreadyClaimed = totalVestedAmount - account.amountLeft;
+        uint256 toVestAmount = totalVestedAmount - alreadyClaimed;
+        account.amountLeft = toVestAmount;
 
-        token.transfer(msg.sender, amount);
+        token.transfer(msg.sender, account.amountLeft);
     }
 
     function vestedAmount(VestingAccount memory account) internal view returns (uint256) {
         uint256 timePassed = block.timestamp - account.startTimestamp;
-
-        if (timePassed > VESTING_DURATION) {
-            return account.amountLeft;
-        }
 
         uint256 vestingPeriodsPassed = timePassed / VESTING_PERIOD;
         uint256 vestedAmountPerPeriod = account.initialLockedAmount / (VESTING_DURATION / VESTING_PERIOD);
