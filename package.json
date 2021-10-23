@@ -1,0 +1,28 @@
+{
+  "name": "vesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "verify-test": "hh verify --network rinkeby 0xceEfA7EeA2c6Fb3517BDDC9990298823F9377390"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.6",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "^4.3.2",
+    "@openzeppelin/hardhat-upgrades": "^1.11.0",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.1",
+    "hardhat": "^2.6.6"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts-upgradeable": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "web3": "^1.6.0"
+  }
+}
